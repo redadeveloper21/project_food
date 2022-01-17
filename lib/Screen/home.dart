@@ -1,3 +1,4 @@
+import 'package:company_one_plus/Screen/test.dart';
 import 'package:flutter/material.dart';
 
 import 'food_screen.dart';
@@ -125,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const FoodScreen()));
+                        builder: (context) => FoodScreen(dropdownValue)));
               })
         ],
       ),
