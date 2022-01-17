@@ -63,11 +63,6 @@ class _FoodScreenState extends State<FoodScreen> {
     );
   }
 
-  // Widget buildSearch() => SearchWidget(
-  //       text: query,
-  //       hintText: 'Food Name',
-  //       onChanged: searchBook,
-  //     );
 
   Widget buildBook(Vitamin vitamin) => Container(
         decoration:
