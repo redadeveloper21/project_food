@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                     dropdownValue = newValue!;
                   });
                 },
-                items: <String>['A', 'B', 'C', 'D', 'E']
+                items: <String>['A','C','B1','B2','B3','B4','B5','B6','B12','K', 'G', 'H']
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

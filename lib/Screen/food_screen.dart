@@ -14,12 +14,14 @@ class FoodScreen extends StatefulWidget {
 class _FoodScreenState extends State<FoodScreen> {
   TextStyle _style = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);
 
-  List<Vitamin> vitamin_ = [];
+  late List<Vitamin> vitamin;
   String query = '';
+
   @override
   void initState() {
     super.initState();
-    vitamin_ = vitsw();
+
+    vitamin = vitsw();
   }
 
   @override
@@ -37,21 +39,13 @@ class _FoodScreenState extends State<FoodScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset(
-              'assets/images/vits.jpg.webp',
-              height: MediaQuery.of(context).size.height * 0.3,
-              width: 300,
-              fit: BoxFit.cover,
-            ),
-            // Container(
-            // /: 42,
-            // ,
+            buildSearch(),
             Container(
               height: MediaQuery.of(context).size.height * 0.8,
               child: ListView.builder(
-                  itemCount: vitamin_.length,
+                  itemCount: vitamin.length,
                   itemBuilder: (context, index) {
-                    final vit = vitamin_[index];
+                    final vit = vitamin[index];
                     return Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: buildBook(vit));
@@ -63,6 +57,11 @@ class _FoodScreenState extends State<FoodScreen> {
     );
   }
 
+  Widget buildSearch() => SearchWidget(
+        text: query,
+        hintText: '                  Food Name',
+        onChanged: searchVitamin,
+      );
 
   Widget buildBook(Vitamin vitamin) => Container(
         decoration:
@@ -95,22 +94,21 @@ class _FoodScreenState extends State<FoodScreen> {
         ),
       );
 
-  // void searchBook(String query) {
-  //   final books = vitamin_.where((book) {
-  //     final titleLower = book.food.toLowerCase();
-  //     final authorLower = book.vitamin.toLowerCase();
-  //     final searchLower = query.toLowerCase();
+  void searchVitamin(String query) {
+    final vitamins = vitsw().where((vitamin) {
+      final nameLower = vitamin.food.toLowerCase();
+      final vitaminLower = vitamin.vitamin.toLowerCase();
+      final searchLower = query.toLowerCase();
 
-  //     return titleLower.contains(searchLower) ||
-  //         authorLower.contains(searchLower);
-  //   }).toList();
+      return nameLower.contains(searchLower) ||
+          vitaminLower.contains(searchLower);
+    }).toList();
 
-  //   setState(() {
-  //     this.query = query;
-  //     // ignore: unnecessary_this
-  //     this.vitamin_ = books;
-  //   });
-  // }
+    setState(() {
+      this.query = query;
+      this.vitamin = vitamins;
+    });
+  }
 
   List<Vitamin> vitsw() {
     switch (widget.vitamin) {
@@ -119,6 +117,36 @@ class _FoodScreenState extends State<FoodScreen> {
         break;
       case 'C':
         return vitamin_C;
+        break;
+      case 'B1':
+        return vitamin_B1;
+        break;
+      case 'B2':
+        return vitamin_B2;
+        break;
+      case 'B3':
+        return vitamin_B3;
+        break;
+      case 'B4':
+        return vitamin_B4;
+        break;
+      case 'B5':
+        return vitamin_B5;
+        break;
+      case 'B6':
+        return vitamin_B6;
+        break;
+      case 'B12':
+        return vitamin_B12;
+        break;
+      case 'K':
+        return vitamin_K;
+        break;
+      case 'G':
+        return vitamin_G;
+        break;
+      case 'H':
+        return vitamin_H;
         break;
       default:
         return [];
